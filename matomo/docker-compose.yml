@@ -35,7 +35,10 @@ services:
     volumes:
       - matomo:/var/www/html:ro
       # see https://github.com/matomo-org/matomo-nginx
-      - ./matomo.conf:/etc/nginx/conf.d/matomo.conf:ro
+      - type: bind
+        source: ./matomo.conf
+        target: /etc/nginx/conf.d/matomo.conf
+        read_only: true
     ports:
       - 8081:80
 
